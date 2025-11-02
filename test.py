@@ -12,7 +12,7 @@ tests = [
     "Tell me a joke about programmers.",
 ]
 
-print("🧪 Testing Fine-Tuned Mistral Model\n")
+print("Testing Fine-Tuned Mistral Model\n")
 
 for prompt in tests:
     inputs = tokenizer(prompt, return_tensors="pt").to("cuda")
@@ -24,4 +24,5 @@ for prompt in tests:
         do_sample=True,
     )
     response = tokenizer.decode(outputs[0], skip_special_tokens=True)
-    print(f"Prompt: {prompt}\nResponse: {response.split(prompt)[-1].strip()}\n{'-'*60}")
+    print(f"Prompt: {prompt}\nResponse: {response.replace(prompt, '').strip()}\n{'-'*60}")
+
